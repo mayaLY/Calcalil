@@ -20,7 +20,17 @@ const [isOpen, setIsOpen] = useState(false);
       
       </div>
       <div id="form-window"></div>
-    
+        <span>סכום הלוואה</span>
+        <span>החזר חודשי</span>
+        <input type="text" placeholder='שקל' />
+        <span>תקופת הלוואה</span>
+        <input type="number" placeholder='חודשים'/>
+        <span>אחוז הריבית</span>
+        <input type="number" placeholder='%' />
+        <span>החזר חודשי</span>
+        <span>סכום הלוואה</span>
+        <span></span>
+        <button type='submit'>חשב</button>
     
     </div>
   )
