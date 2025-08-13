@@ -8,14 +8,14 @@ const [isClicked, setIsClicked] = useState(false);
     <div id="calculator">
       <div id="parameters">
           <div id="monthOrSum">
-            <span>לחשב את:</span>
-            <button>החזר חודשי</button>
-            <button>סכום ההלוואה</button>
+            <span id='parameter'>לחשב את:</span>
+            <button id='option1'>החזר חודשי</button>
+            <button id='option2'>סכום ההלוואה</button>
           </div>
         <div id="method">
-          <span>אופן החזר הלוואה</span>
-          <button>חזר קבוע (לוח שפיצר)</button>
-          <button>החזר קרן שווה</button>
+          <span id='parameter'>אופן החזר הלוואה</span>
+          <button id='option1'>חזר קבוע (לוח שפיצר)</button>
+          <button id='option2'>החזר קרן שווה</button>
         </div>
       </div>
       <div id="form-window">
