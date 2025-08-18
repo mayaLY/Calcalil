@@ -1,0 +1,26 @@
+.calculator{
+    direction: rtl;
+    
+}
+.hide{
+    display: none;
+}
+.option {
+  padding: 8px 16px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.option:hover {
+  background-color: #5e4646;
+}
+
+.active {
+  background-color: #4caf50;
+  color: white;
+  border-color: #4caf50;
+}
