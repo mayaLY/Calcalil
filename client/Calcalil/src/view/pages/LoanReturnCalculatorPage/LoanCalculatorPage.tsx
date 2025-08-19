@@ -6,6 +6,7 @@ const LoanCalculatorPage = () => {
 const [isClicked, setIsClicked] = useState(false);
 const [isSpizer, setIsSpizer] = useState(false);
 const [selectedOption, setSelectedOption] = useState<string | null>(null);
+const [loanOption, setLoanOption] = useState<string | null>(null);
 function setClick() {
     setIsClicked(!isClicked);
   }
@@ -32,11 +33,14 @@ function setSpizer() {
           </div>
         <div className={styles.method}>
           <span className={styles.parameter}>אופן החזר הלוואה</span>
-          <button className={`${styles.option} ${selectedOption === 'loan' ? styles.active : ''}`}
+          <button className={`${styles.option} ${loanOption === 'spizer' ? styles.active : ''}`}
                 onClick={() => {
-                 setClick();
-                 setSelectedOption('loan');}}>  חזר קבוע (לוח שפיצר)</button>
-          <button className={styles.option2} onClick={setSpizer}>החזר קרן שווה</button>
+                 setSpizer();
+                 setLoanOption('spizer');}}>  חזר קבוע (לוח שפיצר)</button>
+          <button className={`${styles.option} ${loanOption === 'keren' ? styles.active : ''}`}
+                onClick={() => {
+                 setSpizer();
+                 setLoanOption('keren');}}>החזר קרן שווה</button>
         </div>
       </div>
       <div id={styles.formWindow}>
