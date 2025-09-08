@@ -9,6 +9,16 @@ const LoanCalculatorPage = () => {
     loanOption,
     chooseCalculationType,
     chooseRepaymentMethod,
+    loanAmount,
+    setLoanAmount,
+    monthlyPayment,
+    setMonthlyPayment,
+    months,
+    setMonths,
+    interest,
+    setInterest,
+    calculate,
+    result,
   } = useLoanCalculatorVM();
 
   return (
@@ -17,17 +27,13 @@ const LoanCalculatorPage = () => {
         <div className={styles.monthOrSum}>
           <span className={styles.parameter}>לחשב את:</span>
           <button
-            className={`${styles.option} ${
-              selectedOption === "monthly" ? styles.active : ""
-            }`}
+            className={`${styles.option} ${selectedOption === "monthly" ? styles.active : ""}`}
             onClick={() => chooseCalculationType("monthly")}
           >
             חודשי
           </button>
           <button
-            className={`${styles.option} ${
-              selectedOption === "loan" ? styles.active : ""
-            }`}
+            className={`${styles.option} ${selectedOption === "loan" ? styles.active : ""}`}
             onClick={() => chooseCalculationType("loan")}
           >
             סכום ההלוואה
@@ -37,17 +43,13 @@ const LoanCalculatorPage = () => {
         <div className={styles.method}>
           <span className={styles.parameter}>אופן החזר הלוואה</span>
           <button
-            className={`${styles.option} ${
-              loanOption === "spizer" ? styles.active : ""
-            }`}
+            className={`${styles.option} ${loanOption === "spizer" ? styles.active : ""}`}
             onClick={() => chooseRepaymentMethod("spizer")}
           >
             חזר קבוע (לוח שפיצר)
           </button>
           <button
-            className={`${styles.option} ${
-              loanOption === "keren" ? styles.active : ""
-            }`}
+            className={`${styles.option} ${loanOption === "keren" ? styles.active : ""}`}
             onClick={() => chooseRepaymentMethod("keren")}
           >
             החזר קרן שווה
@@ -56,28 +58,63 @@ const LoanCalculatorPage = () => {
       </div>
 
       <div id={styles.formWindow}>
-        <span className={isClicked && selectedOption === "loan" ? styles.show : styles.hide}>
-          סכום הלוואה
-        </span>
-        <span className={isClicked && selectedOption === "monthly" ? styles.show : styles.hide}>
-          החזר חודשי
-        </span>
-        <input type="text" placeholder="שקל" />
+        {selectedOption === "loan" && (
+          <>
+            <span>החזר חודשי</span>
+            <input
+              type="number"
+              placeholder="₪"
+              value={monthlyPayment ?? ""}
+              onChange={(e) => setMonthlyPayment(Number(e.target.value))}
+            />
+          </>
+        )}
 
-        <span>תקופת הלוואה</span>
-        <input type="number" placeholder="חודשים" />
+        {selectedOption === "monthly" && (
+          <>
+            <span>סכום הלוואה</span>
+            <input
+              type="number"
+              placeholder="₪"
+              value={loanAmount ?? ""}
+              onChange={(e) => setLoanAmount(Number(e.target.value))}
+            />
+          </>
+        )}
+
+        <span>תקופת הלוואה (חודשים)</span>
+        <input
+          type="number"
+          value={months ?? ""}
+          onChange={(e) => setMonths(Number(e.target.value))}
+        />
 
         <span>אחוז הריבית</span>
-        <input type="number" placeholder="%" />
+        <input
+          type="number"
+          placeholder="%"
+          value={interest ?? ""}
+          onChange={(e) => setInterest(Number(e.target.value))}
+        />
 
-        <span className={isClicked && selectedOption === "loan" ? styles.show : styles.hide}>
-          החזר חודשי
-        </span>
-        <span className={isClicked && selectedOption === "monthly" ? styles.show : styles.hide}>
-          סכום הלוואה
-        </span>
+        <button type="button" onClick={calculate}>
+          חשב
+        </button>
 
-        <button type="submit">חשב</button>
+        {result && loanOption === "spizer" && (
+          <div className={styles.result}>
+            {result.type === "monthly" && <p>החזר חודשי משוער: ₪{result.value.toFixed(2)}</p>}
+            {result.type === "loan" && <p>סכום הלוואה משוער: ₪{result.value.toFixed(2)}</p>}
+          </div>
+        )}
+
+        {result && loanOption === "keren" && (
+          <div className={styles.result}>
+            <p>תשלום ראשון: ₪{result.first.toFixed(2)}</p>
+            <p>תשלום אחרון: ₪{result.last.toFixed(2)}</p>
+            <p>ממוצע חודשי: ₪{result.avg.toFixed(2)}</p>
+          </div>
+        )}
       </div>
     </div>
   );
