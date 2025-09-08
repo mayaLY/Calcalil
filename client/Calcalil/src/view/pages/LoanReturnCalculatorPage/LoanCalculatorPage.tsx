@@ -28,32 +28,20 @@ const LoanCalculatorPage = () => {
           <span className={styles.parameter}>לחשב את:</span>
           <button
             className={`${styles.option} ${selectedOption === "monthly" ? styles.active : ""}`}
-            onClick={() => chooseCalculationType("monthly")}
-          >
-            חודשי
-          </button>
+            onClick={() => chooseCalculationType("monthly")}>חודשי</button>
           <button
             className={`${styles.option} ${selectedOption === "loan" ? styles.active : ""}`}
-            onClick={() => chooseCalculationType("loan")}
-          >
-            סכום ההלוואה
-          </button>
+            onClick={() => chooseCalculationType("loan")}>סכום ההלוואה</button>
         </div>
 
         <div className={styles.method}>
           <span className={styles.parameter}>אופן החזר הלוואה</span>
           <button
             className={`${styles.option} ${loanOption === "spizer" ? styles.active : ""}`}
-            onClick={() => chooseRepaymentMethod("spizer")}
-          >
-            חזר קבוע (לוח שפיצר)
-          </button>
+            onClick={() => chooseRepaymentMethod("spizer")}>חזר קבוע (לוח שפיצר)</button>
           <button
             className={`${styles.option} ${loanOption === "keren" ? styles.active : ""}`}
-            onClick={() => chooseRepaymentMethod("keren")}
-          >
-            החזר קרן שווה
-          </button>
+            onClick={() => chooseRepaymentMethod("keren")}>החזר קרן שווה</button>
         </div>
       </div>
 
