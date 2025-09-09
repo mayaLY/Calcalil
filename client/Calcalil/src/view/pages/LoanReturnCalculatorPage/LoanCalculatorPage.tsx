@@ -28,14 +28,14 @@ const LoanCalculatorPage = () => {
           <span className={styles.parameter}>לחשב את:</span>
           <button
             className={`${styles.option} ${selectedOption === "monthly" ? styles.active : ""}`}
-            onClick={() => chooseCalculationType("monthly")}>חודשי</button>
+            onClick={() => chooseCalculationType("monthly")}>החזר החודשי</button>
           <button
             className={`${styles.option} ${selectedOption === "loan" ? styles.active : ""}`}
             onClick={() => chooseCalculationType("loan")}>סכום ההלוואה</button>
         </div>
 
         <div className={styles.method}>
-          <span className={styles.parameter}>אופן החזר הלוואה</span>
+          <span className={styles.parameter}>אופן החזר ההלוואה:</span>
           <button
             className={`${styles.option} ${loanOption === "spizer" ? styles.active : ""}`}
             onClick={() => chooseRepaymentMethod("spizer")}>חזר קבוע (לוח שפיצר)</button>
@@ -53,6 +53,8 @@ const LoanCalculatorPage = () => {
               type="number"
               placeholder="₪"
               value={monthlyPayment ?? ""}
+              max={1000000000}
+              min={0}
               onChange={(e) => setMonthlyPayment(Number(e.target.value))}
             />
           </>
@@ -65,6 +67,8 @@ const LoanCalculatorPage = () => {
               type="number"
               placeholder="₪"
               value={loanAmount ?? ""}
+              max={1000000000}
+              min={0}
               onChange={(e) => setLoanAmount(Number(e.target.value))}
             />
           </>
@@ -74,6 +78,8 @@ const LoanCalculatorPage = () => {
         <input
           type="number"
           value={months ?? ""}
+          max={1000}
+          min={0}
           onChange={(e) => setMonths(Number(e.target.value))}
         />
 
@@ -82,6 +88,8 @@ const LoanCalculatorPage = () => {
           type="number"
           placeholder="%"
           value={interest ?? ""}
+          max={100}
+          min={0}
           onChange={(e) => setInterest(Number(e.target.value))}
         />
 
