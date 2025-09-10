@@ -26,11 +26,11 @@ export function useLoanCalculatorVM() {
   const calculate = () => {
     if (!months || !interest) return;
 
-    const r = interest / 100 / 12; // monthly interest
+    const r = interest / 100 / 12; 
     const n = months;
 
     if (loanOption === "spizer") {
-      // ---- FIXED PAYMENT (שפיצר) ----
+     
       if (selectedOption === "monthly" && loanAmount) {
         const M = (loanAmount * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
         setMonthlyPayment(M);
@@ -45,7 +45,7 @@ export function useLoanCalculatorVM() {
     }
 
     if (loanOption === "keren") {
-      // ---- EQUAL PRINCIPAL (קרן שווה) ----
+
       if (loanAmount) {
         const principalPortion = loanAmount / n;
 
