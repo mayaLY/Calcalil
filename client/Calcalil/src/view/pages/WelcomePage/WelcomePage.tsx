@@ -1,29 +1,22 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./WelcomePage.module.scss";
 
 const WelcomePage = () => {
-  const navigate = useNavigate();
-
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>ברוך הבא</h1>
-      <p className={styles.subtitle}>בחר את המחשבון הרצוי:</p>
-
+    <div className={styles.welcome}>
+      <h1 className={styles.title}>ברוך הבא!</h1>
+      <p className={styles.subtitle}>בחר מחשבון כדי להתחיל:</p>
       <div className={styles.buttons}>
-        <button
-          className={styles.button}
-          onClick={() => navigate("/loan")}
-        >
-          מחשבון הלוואות
-        </button>
-
-        <button
-          className={styles.button}
-          onClick={() => navigate("/savings")}
-        >
-          מחשבון חיסכון
-        </button>
+        <Link to="/loan">
+          <button>מחשבון הלוואות</button>
+        </Link>
+        <Link to="/savings">
+          <button>מחשבון חיסכון</button>
+        </Link>
+        <Link to="/mortgage">
+          <button>מחשבון משכנתא</button>
+        </Link>
       </div>
     </div>
   );
