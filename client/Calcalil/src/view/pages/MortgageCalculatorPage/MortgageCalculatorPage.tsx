@@ -182,12 +182,18 @@ const MortgageCalculatorPage = () => {
                   }
                 />
               </td>
-              <td className={styles.resultCell}>
-                ₪{row.monthlyPayment.toFixed(2)}
-              </td>
-              <td className={styles.resultCell}>
-                ₪{row.totalPaid.toFixed(2)}
-              </td>
+        <td className={styles.resultCell}>
+            {row.monthlyPayment !== null
+                ? row.monthlyPayment.toLocaleString("he-IL", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,}): "-"}
+            </td>
+        <td className={styles.resultCell}>
+             {row.totalPaid !== null
+            ? row.totalPaid.toLocaleString("he-IL", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,}): "-"}
+            </td>
             </tr>
           ))}
         </tbody>
