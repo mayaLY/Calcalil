@@ -17,6 +17,9 @@ const WelcomePage = () => {
         <Link to="/mortgage">
           <button>מחשבון משכנתא</button>
         </Link>
+        <Link to="/expenses">
+          <button>דף הוצאות</button>
+        </Link>
       </div>
     </div>
   );

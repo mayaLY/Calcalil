@@ -136,29 +136,50 @@ const ExpensesPage: React.FC = () => {
         </div>
 
         <div className={styles.chartContainer}>
-          <ResponsiveContainer>
-            <PieChart>
-              <Pie
-                data={vm.chartData}
-                cx="50%"
-                cy="50%"
-                outerRadius={100}
-                fill="#8884d8"
-                dataKey="value"
-                label
-              >
-                {vm.chartData.map((_, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={COLORS[index % COLORS.length]}
-                  />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
+    <ResponsiveContainer>
+        <PieChart>
+             <Pie
+                 data={vm.chartData}
+                 cx="50%"
+                 cy="50%"
+                 outerRadius={110}
+                 dataKey="value"
+                 nameKey="name"
+                 labelLine={false}
+      /* safe label handler */
+                 label={(entry: any) => {
+        // entry may contain: name, percent, value, payload, etc.
+                 const name = String(entry?.name ?? "");
+        // percent can be undefined; coerce to number
+                 const percent = Number(entry?.percent ?? 0);
+                 return `${name} ${ (percent * 100).toFixed(1) }%`;
+                     }}  >
+                     {vm.chartData.map((_, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                     ))}
+                </Pie>
+
+    {/* Tooltip showing amount and percentage (safe typing) */}
+    <Tooltip
+      formatter={(value: any, name: any, props: any) => {
+        const amount = Number(value ?? 0);
+        // props.payload.percent may exist — coerce safely
+        //const pct = Number(props?.payload?.percent ?? 0);
+        // return an array [displayValue, label] as Recharts expects
+        return [`$${amount.toFixed(2)} `, name];
+      }}
+      contentStyle={{
+        backgroundColor: "#fff",
+        border: "1px solid #ccc",
+        borderRadius: "6px",
+      }}
+    />
+
+    <Legend />
+  </PieChart>
+</ResponsiveContainer>
+</div>
+
       </section>
     </div>
   );

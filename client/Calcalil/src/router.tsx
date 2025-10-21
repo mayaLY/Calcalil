@@ -3,6 +3,7 @@ import WelcomePage from "./view/pages/WelcomePage/WelcomePage";
 import LoanCalculatorPage from "./view/pages/LoanReturnCalculatorPage/LoanCalculatorPage";
 import SavingsCalculatorPage from "./view/pages/SavingsCalculatorPage/SavingsCalculatorPage";
 import MortgageCalculatorPage from "./view/pages/MortgageCalculatorPage/MortgageCalculatorPage";
+import ExpensesPage from "./view/pages/ExpensesPage/ExpensesPage";
 
 export const router = createBrowserRouter([
   {
@@ -20,5 +21,9 @@ export const router = createBrowserRouter([
  {
     path: "/mortgage",
     element: <MortgageCalculatorPage />,
+  },
+  {
+    path: "/expenses",
+    element: <ExpensesPage />,
   },
 ]);

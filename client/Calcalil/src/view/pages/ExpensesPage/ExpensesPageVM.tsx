@@ -20,7 +20,7 @@ export const useExpensesPageVM = () => {
   const [monthlySalary, setMonthlySalary] = useState<number | "">("");
   const [categories, setCategories] = useState<string[]>([
     "Bills",
-    "Mortgage",
+    "Mortgage/Rent",
     "Insurance",
     "Groceries",
     "Gas",
